@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Funcionario Cargos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content no-padding>
+  
+  <div text-center>
+    <h1>Funcionario</h1>
+    <h2>Cargos cadastrados</h2>
+  </div>
+    
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-sm="8" offset-sm="2">
+        <ion-list>
+          <ion-item-sliding *ngFor="let cargo of cargos" #slidingItem>
+            <!-- componente slidingItem -->
+            <ion-item>
+              {{cargo.cargo}}   
+            </ion-item>
+              <!-- componente slidingItem fim -->
+              <ion-item-options>
+                <ion-item-option side="and" color="warning" (click)="editarCargo(cargo.id, slidingItem)">
+                  <ion-icon name="create" slot="icon-only"></ion-icon>
+                </ion-item-option>
+                <ion-item-option side="and" color="danger" (click)="deletarCargo(cargo.id, slidingItem)">
+                  <ion-icon name="trash" slot="icon-only"></ion-icon>
+                </ion-item-option>
+              </ion-item-options>
+            </ion-item-sliding>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button routerLink="/categoria/nova">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

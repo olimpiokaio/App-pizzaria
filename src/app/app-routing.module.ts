@@ -4,17 +4,13 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'pizzaria',
     pathMatch: 'full'
   },
-  {
-    path: 'home',
-    loadChildren: './home/home.module#HomePageModule'
-  },
-  {
-    path: 'list',
-    loadChildren: './list/list.module#ListPageModule'
-  }
+  { path: 'pizzaria', loadChildren: './pizzaria/pizzaria.module#PizzariaPageModule' },
+  { path: 'categoria', loadChildren: './categoria/categoria.module#CategoriaPageModule' },
+  { path: 'categoria/nova', loadChildren: './categoria/nova-categoria/nova-categoria.module#NovaCategoriaPageModule' },
+  { path: 'categoria/editar/:cargoId', loadChildren: './categoria/editar-categoria/editar-categoria.module#EditarCategoriaPageModule' }
 ];
 
 @NgModule({

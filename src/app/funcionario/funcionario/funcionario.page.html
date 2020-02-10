@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>funcionario</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button routerLink="/pizzaria/tabs/funcionario/novo">
+        <ion-icon name="add" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-col size="12" size-sm="8" offset-sm="2">
+      <ion-list>
+        <ion-item-sliding *ngFor="let funcionario of funcionarios" #slidingItem>
+          <!-- componente slidingItem -->
+          <ion-item>
+              <ion-thumbnail slot="start">
+                <ion-img [src]="funcionario.imageUrl"></ion-img>
+              </ion-thumbnail>
+              <ion-label>
+                <h1>{{funcionario.nome}}</h1>
+                <div class="offer-details">
+                  <p>{{funcionario.cargo}}</p>
+                </div>
+              </ion-label>
+            </ion-item>
+            <!-- componente slidingItem fim -->
+          <ion-item-options>
+            <ion-item-option side="and" color="warning" (click)="editarFuncionario(funcionario.id, slidingItem)">
+              <ion-icon name="create" slot="icon-only"></ion-icon>
+            </ion-item-option>
+            <ion-item-option side="and" color="danger" (click)="deletarFuncionario(funcionario.id, slidingItem)">
+              <ion-icon name="trash" slot="icon-only"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+    </ion-col>
+  </ion-grid>
+</ion-content>

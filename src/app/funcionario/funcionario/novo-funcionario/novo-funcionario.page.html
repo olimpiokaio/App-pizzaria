@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/pizzaria/tabs/funcionario"></ion-back-button>
+    </ion-buttons>
+    <ion-title>novo funcionario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="form">
+    <ion-grid>
+      <ion-row>
+        <ion-col size-md="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating">Nome</ion-label>
+            <ion-input type="text" formControlName="nome" clearInput></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-md="6" offset-sm="3">
+          <ion-item>
+              <ion-label position="floating">Cargo</ion-label>
+              <ion-select formControlName="cargo">
+                <ion-select-option *ngFor="let cargo of cargos">
+                  {{cargo.cargo}}
+                </ion-select-option>
+              </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-md="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating">Data de nascimento</ion-label>
+            <ion-datetime
+                formControlName="dataNascimento"
+                required>
+            </ion-datetime>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-md="6" offset-sm="3" text-center>
+          <ion-button  (click)="takePicture()" fill="clear">
+            <ion-icon name="camera"></ion-icon>
+          </ion-button>
+          <ion-img [src]="photo" *ngIf="photo"></ion-img>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-md="6" offset-sm="3">
+          <ion-button 
+            (click)="onNovoFuncionario()" 
+            color="primary"
+            [disabled]="!form.valid"
+          >
+            <ion-icon slot="start" name="add-circle-outline"></ion-icon>
+            cadastrar
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>  
+  </form>
+</ion-content>

@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cardápio</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid *ngIf="carregaPizzas.length > 0">
+    <ion-row>
+        <ion-col size="12" size-md="8" offset-sm="2" text-center>
+          <ion-card no-padding>
+            <ion-card-header>
+              <ion-card-title color="light">{{carregaPizzas[0].nome}}</ion-card-title>
+              <ion-card-subtitle>Aproveite por apenas {{carregaPizzas[0].preco | currency: 'R$'}}</ion-card-subtitle>
+            </ion-card-header>
+            <ion-img *ngIf="carregaPizzas[0].imageUrl" [src]="carregaPizzas[0].imageUrl"></ion-img>
+            <ion-card-content>
+              {{carregaPizzas[0].descricao}}
+            </ion-card-content>
+            <div padding>
+              <ion-button
+              fill="outline"
+              size="large"
+              routerDirection="forward"
+              [routerLink]="['/','pizzaria','tabs','pesquisa',carregaPizzas[0].id]">
+                <span>Conferir</span>
+              </ion-button>
+            </div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row *ngIf="pizzaRelevante">
+      <ion-col size="12" size-md="8" offset-sm="2">
+        <ion-list>
+          <ion-item *ngFor="let pizza of pizzaRelevante" 
+          [routerLink]="['/','pizzaria','tabs','pesquisa', pizza.id]">
+            <ion-avatar slot="start">
+              <ion-img [src]="pizza.imageUrl"></ion-img>
+            </ion-avatar>
+            <ion-label>
+              <h5>{{ pizza.nome }}</h5>
+              <strong>Preço: {{pizza.preco | currency: 'R$'}}</strong>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
